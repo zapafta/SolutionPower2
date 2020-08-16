@@ -43,7 +43,54 @@ namespace ConsoleApp1
                                       select fn;
 
 
-         
+
+
+
+            //Mostrar nomes 
+            //foreach (var item in programmer1.GetPesquisaNome("Ze"))
+            //{
+            //    Console.WriteLine(item.FullName + "-" + item.Age);
+            //}
+
+            //Mostrar nomes com mais 35 anos
+            //foreach (var item in programmer1.GetPesquisaNomeMais35("Ze"))
+            //{
+            //    Console.WriteLine("Nome: " + item.FullName + "Idade: " + item.Age);
+            //}
+
+            //Mostrar Nomes entre idades
+            //foreach (var item in programmer1.GetEntreIdades(25, 34))
+            //{
+            //    Console.WriteLine("Nome: " + item.FullName + "Idade: " + item.Age);
+            //}
+
+            //Mostrar Nomes e de ordem Asc ou Desc
+            //  foreach (var item in programmer1.GetPesquisaNomeoOrdenado("ega", "Asc"))
+            //{
+            //    Console.WriteLine("Nome: " + item.FullName + "Idade: " + item.Age);
+            //}
+
+            //foreach (var item in programmer1.GetPesquisaOrdenado("Desc"))
+            //{
+            //    Console.WriteLine("Nome: " + item.FullName + "Idade: " + item.Age);
+            //}
+
+            //Mostra o que tem maior Idade
+            //Console.WriteLine(programmer1.GetMaiorIdade().FullName + programmer1.GetMaiorIdade().Age);
+
+            //Mostra a média de Idades
+            //Console.WriteLine("O minha média é: " + programmer1.GetMediaDeIdades().ToString("#.##"));
+
+            //Mostra lista de Femininos
+            //Console.WriteLine("A minha lista de Femininos é: ");
+            //foreach (var item in programmer1.GetListaFemininos())
+            //{
+                
+            //    Console.WriteLine(item.FullName + item.Age);
+            //} 
+
+            Console.WriteLine(programmer1.GetPersonIdadeData(false).BirthDate + "-" + (DateTime.Now-programmer1.GetPersonIdadeData(false).BirthDate).Days/365 + "Anos");
+           
 
             foreach (var programador in val)
             {
