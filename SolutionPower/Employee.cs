@@ -9,7 +9,7 @@ namespace SolutionPower
    public abstract class Employee:Person
     {
 
-
+        public int ola; 
         public double? _salary;
         public double Salary { get; set; }
 
