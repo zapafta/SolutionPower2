@@ -15,13 +15,13 @@ namespace ConsoleApp1
 
 
             List<Employee> list = new List<Employee>();
-
-            Programmer programmer = new Programmer(29, "Joao",DateTime.Now, Gender.Masculino, DateTime.Now,500);
+            List<Programmer> pro = new List<Programmer>();
+            Programmer programmer = new Programmer(29, "Joao",DateTime.Now, Gender.Masculino, 210, DateTime.Now,500);
            
 
             list.Add(programmer);
-            Programmer programmer1 = new Programmer(44, "Manel", DateTime.Now, Gender.Feminino, DateTime.Now,650);
-            Manager Manager2 = new Manager(44, "MANAGERPWOER", DateTime.Now, Gender.Feminino, DateTime.Now,1500);
+            Programmer programmer1 = new Programmer(44, "Manel", DateTime.Now, Gender.Feminino, 190, DateTime.Now,650);
+            Manager Manager2 = new Manager(44, "MANAGERPWOER", DateTime.Now, Gender.Feminino, 205, DateTime.Now,1500,pro);
             list.Add(programmer1);
             list.Add(Manager2);
 
@@ -85,13 +85,33 @@ namespace ConsoleApp1
             //Console.WriteLine("A minha lista de Femininos é: ");
             //foreach (var item in programmer1.GetListaFemininos())
             //{
-                
+
             //    Console.WriteLine(item.FullName + item.Age);
             //} 
 
-            Console.WriteLine(programmer1.GetPersonIdadeData(false).BirthDate + "-" + (DateTime.Now-programmer1.GetPersonIdadeData(false).BirthDate).Days/365 + "Anos");
-           
+            //Devolve o mais velho ou o mais novo
+            //Console.WriteLine(programmer1.GetPersonIdadeData(false).BirthDate + "-" + (DateTime.Now-programmer1.GetPersonIdadeData(false).BirthDate).Days/365 + "Anos");
 
+            //Devolve a Person se altura maior que 200 e sor verdadeiro, ou menor de 190 se for falso
+            //foreach (var item in programmer1.GetAlturaMaiorMenor(190, false))
+            //{
+            //    Console.WriteLine("A lista por altura é: " + item.FullName + item.Altura);
+            //}
+
+            //Devolve lista de Programadores de um Manager
+            Manager auxiliar = programmer1.GetManagerProgrammer("Paulo");
+            if (auxiliar == null)
+            {
+                Console.WriteLine("Não encontrei");
+            }
+            else {
+                Console.WriteLine("Para o Manager" + auxiliar.FullName);
+                foreach (var item in auxiliar.Programmers)
+                {
+                    Console.WriteLine(item.FullName);
+                }            
+                }
+                    
             foreach (var programador in val)
             {
                 Console.WriteLine(programador.FullName);

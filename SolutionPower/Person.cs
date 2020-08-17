@@ -13,11 +13,11 @@ namespace SolutionPower
         public string FullName { get; set; }
         public DateTime BirthDate { get; set; }
         public Gender Gender { get; set; }
-
+        public double Altura { get; set; }
         public DateTime _birthdate;
         private DateTime brithdate;
 
-        public Person(int _Age, string _FullName, DateTime _Brithdate, Gender _Gender, DateTime _birthdate)
+        public Person(int _Age, string _FullName, DateTime _Brithdate, Gender _Gender, double Altura, DateTime _birthdate)
         {
 
             this._birthdate = _birthdate;
@@ -26,20 +26,21 @@ namespace SolutionPower
         }
 
 
-        public Person(string _FullName, DateTime _Brithdate, string adress)
+        public Person(string _FullName, DateTime _Brithdate, string adress, double _Altura)
         {
 
             this._birthdate = _Brithdate;
             this.FullName = _FullName;
-
+            this.Altura = _Altura;
 
         }
 
-        protected Person(string fullName, DateTime brithdate, Gender gender, DateTime birthdate)
+        protected Person(string fullName, DateTime brithdate, Gender gender, double altura, DateTime birthdate)
         {
             FullName = fullName;
             this.brithdate = brithdate;
             Gender = gender;
+            Altura = altura;
             BirthDate = birthdate;
         }
 
@@ -69,16 +70,27 @@ namespace SolutionPower
 
         }
 
-        public List<Person> GetTodos(){
+        public List<Person> GetTodos() {
 
             List<Person> listPerson = new List<Person>();
 
-            Programmer programmer1 = new Programmer(44, "Ze toino", new DateTime(2010, 8, 18), Gender.Feminino, DateTime.Now, 650);
-            Manager Manager2 = new Manager(28, "Marega", new DateTime(1999, 8, 18), Gender.Masculino, DateTime.Now, 1500);
-            Programmer programmerRenato = new Programmer(26, "Renato", new DateTime(1992, 8, 18), Gender.Feminino, DateTime.Now, 650);
-            Manager ManagerPaulo = new Manager(50, "Paulo", new DateTime(1985, 8, 18), Gender.Feminino, DateTime.Now, 1500);
-            Programmer programmerZe = new Programmer(150, "Ze", new DateTime(1990, 8, 18), Gender.Feminino, DateTime.Now, 650);
-            Manager ManagerAsdrubal = new Manager(48, "Ausdrubal", new DateTime(1985, 5, 18), Gender.Feminino, DateTime.Now, 1500);
+            Programmer programmer1 = new Programmer(44, "Ze toino", new DateTime(2010, 8, 18), Gender.Feminino, 210, DateTime.Now, 650);
+            Programmer programmerRenato = new Programmer(26, "Renato", new DateTime(1992, 8, 18), Gender.Feminino, 205, DateTime.Now, 650);
+            Programmer programmerZe = new Programmer(150, "Ze", new DateTime(1990, 8, 18), Gender.Feminino, 220, DateTime.Now, 650);
+
+            List<Programmer> listaPaulo = new List<Programmer>();
+            listaPaulo.Add(programmerZe);
+            listaPaulo.Add(programmerRenato);
+
+            List<Programmer> listaMarega = new List<Programmer>();
+
+            List<Programmer> listaAsdrubal = new List<Programmer>();
+
+            Manager Manager2 = new Manager(28, "Marega", new DateTime(1999, 8, 18), Gender.Masculino, 180, DateTime.Now, 1500, listaMarega);
+
+            Manager ManagerPaulo = new Manager(50, "Paulo", new DateTime(1985, 8, 18), Gender.Feminino, 190, DateTime.Now, 1500, listaPaulo);
+
+            Manager ManagerAsdrubal = new Manager(48, "Ausdrubal", new DateTime(1985, 5, 18), Gender.Feminino, 199, DateTime.Now, 1500, listaAsdrubal);
 
 
             listPerson.Add(programmer1);
@@ -88,10 +100,40 @@ namespace SolutionPower
             listPerson.Add(programmerZe);
             listPerson.Add(ManagerAsdrubal);
 
-                        
+
             return listPerson;
-        
+
         }
+
+        public List<Manager> GetTodosManageres(){
+            List<Manager> listaTodosManagers = new List<Manager>();
+
+            Programmer programmer1 = new Programmer(44, "Ze toino", new DateTime(2010, 8, 18), Gender.Feminino, 210, DateTime.Now, 650);
+            Programmer programmerRenato = new Programmer(26, "Renato", new DateTime(1992, 8, 18), Gender.Feminino, 205, DateTime.Now, 650);
+            Programmer programmerZe = new Programmer(150, "Ze", new DateTime(1990, 8, 18), Gender.Feminino, 220, DateTime.Now, 650);
+
+            List<Programmer> listaPaulo = new List<Programmer>();
+            listaPaulo.Add(programmerZe);
+            listaPaulo.Add(programmerRenato);
+
+            List<Programmer> listaMarega = new List<Programmer>();
+
+            List<Programmer> listaAsdrubal = new List<Programmer>();
+
+            Manager Manager2 = new Manager(28, "Marega", new DateTime(1999, 8, 18), Gender.Masculino, 180, DateTime.Now, 1500, listaMarega);
+
+            Manager ManagerPaulo = new Manager(50, "Paulo", new DateTime(1985, 8, 18), Gender.Feminino, 190, DateTime.Now, 1500, listaPaulo);
+
+            Manager ManagerAsdrubal = new Manager(48, "Ausdrubal", new DateTime(1985, 5, 18), Gender.Feminino, 199, DateTime.Now, 1500, listaAsdrubal);
+
+            listaTodosManagers.Add(Manager2);
+            listaTodosManagers.Add(ManagerPaulo);
+            listaTodosManagers.Add(ManagerAsdrubal);
+
+            return listaTodosManagers;
+        }
+
+
         //Devolve lista de Nomes comecados por um valor
         public List<Person>GetPesquisaNome(string valor)
         {
@@ -197,11 +239,31 @@ namespace SolutionPower
                 return listaPersonAtual.OrderByDescending(t => t.BirthDate).Take(1).FirstOrDefault();
             }
 
+         }
+
+           public List<Person> GetAlturaMaiorMenor(double altura, bool valor)
+        {
+            List<Person> listaPersonAtural = GetTodos();
+            if(valor == true)
+            {
+                List<Person> p = listaPersonAtural.Where(t => t.Altura > altura).ToList();
+                return p;
+            }
+
+            return listaPersonAtural.Where(t => t.Altura < altura).ToList();
+                            
 
         }
 
+        public Manager GetManagerProgrammer (string nome)
+        {
+            List<Manager> listaPersonAtual = GetTodosManageres();
 
+            Manager m = listaPersonAtual.Where(t => t.FullName == nome).FirstOrDefault();
 
+            return m;
+
+        }
 
 
 

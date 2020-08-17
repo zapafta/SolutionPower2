@@ -18,15 +18,17 @@ namespace SolutionPower
       
 
 
-        public Manager(int _Age, string _FullName, DateTime _Brithdate, Gender _Gender, DateTime _birthdate, double _salary ) :
-         base(_Age, _FullName, _Brithdate, _Gender, _birthdate,_salary)
+        public Manager(int _Age, string _FullName, DateTime _Brithdate, Gender _Gender, double _Altura, DateTime _birthdate, double _salary, List<Programmer> _programmers ) :
+         base(_Age, _FullName, _Brithdate, _Gender, _Altura, _birthdate,_salary)
         {
             this.Age = _Age;
             this.BirthDate = _Brithdate;
             this.Gender = _Gender;
+            this.Altura = _Altura;
             this._birthdate = _birthdate;
             this.FullName = _FullName;
             this.Salary = _salary;
+            this.Programmers = _programmers;
         }
 
 
